@@ -10,6 +10,7 @@ import UIKit
 class CountryViewController: UIViewController {
     @IBOutlet weak var countriesTblView: UITableView!
     
+    @IBOutlet weak var searchTxtField: UITextField!
     private let countryViewModel = CountryViewModel()
     
     
@@ -18,11 +19,15 @@ class CountryViewController: UIViewController {
         // Do any additional setup after loading the view.
         fetchData()
         
+        title = "Countries"
+        
         countriesTblView.register(UINib(nibName: "CustomCountryCell", bundle: .main), forCellReuseIdentifier: "CountryCell")
         countriesTblView.dataSource = self
         countriesTblView.delegate = self
+        searchTxtField.delegate = self
         
     }
+    
     
     private func fetchData(){
         countryViewModel.fetchCountries { result in
@@ -42,9 +47,40 @@ class CountryViewController: UIViewController {
     
 }
 
+extension CountryViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+           guard let searchText = textField.text else { return }
+
+           if !searchText.isEmpty {
+               countryViewModel.searchByLanguageOrName(searchText: searchText) { [weak self] result in
+                   guard let self = self else { return }
+
+                   switch result {
+                   case .success(let countries):
+                       self.countryViewModel.filteredCountriesArr = countries
+                       DispatchQueue.main.async {
+                           self.countriesTblView.reloadData()
+                       }
+                   case .failure(let error):
+                       print("Search failed: \(error)")
+                   }
+               }
+           } else {
+               countryViewModel.filteredCountriesArr = countryViewModel.allCountriesArr
+               countriesTblView.reloadData()
+           }
+       }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder() // Dismiss the keyboard
+            return true
+        }
+}
+
 extension CountryViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let countries = countryViewModel.allCountriesArr{
+        
+        if let countries = countryViewModel.filteredCountriesArr{
             print(countries.count)
             return countries.count
         }
@@ -54,10 +90,8 @@ extension CountryViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = countriesTblView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath) as! CustomCountryCell
-        
-        //        print(countryViewModel.countries![10].population)
-        
-        if let country = countryViewModel.allCountriesArr?[indexPath.row]{
+                
+        if let country = countryViewModel.filteredCountriesArr?[indexPath.row]{
             cell.countryFlagLbl.text = country.flag
             cell.countryNameLbl.text = country.name.common
         }
@@ -72,16 +106,13 @@ extension CountryViewController:UITableViewDelegate,UITableViewDataSource{
         
         
         
-        if let selectedCountryCell = countryViewModel.allCountriesArr?[indexPath.row] {
-                // Instantiate the CountryDetailsViewController from storyboard
-                let storyboard = UIStoryboard(name: "Main", bundle: nil) // Assuming "Main" is your storyboard name
-                if let countryDetailsVC = storyboard.instantiateViewController(withIdentifier: "CountryDetailsViewController") as? CountryDetailsViewController {
-                    // Pass the selected country to the CountryDetailsViewController
-                    countryDetailsVC.selectedCountry = selectedCountryCell
-                    // Push the CountryDetailsViewController onto the navigation stack
-                    navigationController?.pushViewController(countryDetailsVC, animated: true)
-                }
+        if let selectedCountryCell = countryViewModel.filteredCountriesArr?[indexPath.row] {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let countryDetailsVC = storyboard.instantiateViewController(withIdentifier: "CountryDetailsViewController") as? CountryDetailsViewController {
+                countryDetailsVC.selectedCountry = selectedCountryCell
+                navigationController?.pushViewController(countryDetailsVC, animated: true)
             }
+        }
         
     }
     
