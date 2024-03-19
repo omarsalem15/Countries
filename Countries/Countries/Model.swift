@@ -10,10 +10,10 @@ import Foundation
 struct Country:Codable{
     let name: Name
     let currencies: [String: Currency]?
-    
     let capital: [String]?
     let region: String
     let languages: [String:String]?
+    let flag: String
     let population: Int
     let timezones: [String]
     let flags: Flags
