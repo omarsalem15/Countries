@@ -69,6 +69,20 @@ extension CountryViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath)
+        
+        
+        
+        if let selectedCountryCell = countryViewModel.allCountriesArr?[indexPath.row] {
+                // Instantiate the CountryDetailsViewController from storyboard
+                let storyboard = UIStoryboard(name: "Main", bundle: nil) // Assuming "Main" is your storyboard name
+                if let countryDetailsVC = storyboard.instantiateViewController(withIdentifier: "CountryDetailsViewController") as? CountryDetailsViewController {
+                    // Pass the selected country to the CountryDetailsViewController
+                    countryDetailsVC.selectedCountry = selectedCountryCell
+                    // Push the CountryDetailsViewController onto the navigation stack
+                    navigationController?.pushViewController(countryDetailsVC, animated: true)
+                }
+            }
+        
     }
     
 }
