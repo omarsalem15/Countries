@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		07C2F8EC2BA4E90A0052FD4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2F8EB2BA4E90A0052FD4E /* AppDelegate.swift */; };
 		07C2F8EE2BA4E90A0052FD4E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2F8ED2BA4E90A0052FD4E /* SceneDelegate.swift */; };
-		07C2F8F02BA4E90A0052FD4E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2F8EF2BA4E90A0052FD4E /* ViewController.swift */; };
+		07C2F8F02BA4E90A0052FD4E /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2F8EF2BA4E90A0052FD4E /* CountryViewController.swift */; };
 		07C2F8F32BA4E90A0052FD4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C2F8F12BA4E90A0052FD4E /* Main.storyboard */; };
 		07C2F8F52BA4E90C0052FD4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07C2F8F42BA4E90C0052FD4E /* Assets.xcassets */; };
 		07C2F8F82BA4E90C0052FD4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C2F8F62BA4E90C0052FD4E /* LaunchScreen.storyboard */; };
@@ -17,19 +17,25 @@
 		07C2F9022BA4F0340052FD4E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2F9012BA4F0340052FD4E /* NetworkService.swift */; };
 		07C2F9052BA8949D0052FD4E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 07C2F9042BA8949D0052FD4E /* Alamofire */; };
 		07C2F9072BA8949D0052FD4E /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 07C2F9062BA8949D0052FD4E /* AlamofireDynamic */; };
+		07C2F9092BA903C70052FD4E /* CountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2F9082BA903C70052FD4E /* CountryViewModel.swift */; };
+		07C2F90C2BA92F740052FD4E /* CustomCountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2F90A2BA92F740052FD4E /* CustomCountryCell.swift */; };
+		07C2F90D2BA92F740052FD4E /* CustomCountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07C2F90B2BA92F740052FD4E /* CustomCountryCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		07C2F8E82BA4E90A0052FD4E /* Countries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Countries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C2F8EB2BA4E90A0052FD4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07C2F8ED2BA4E90A0052FD4E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		07C2F8EF2BA4E90A0052FD4E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		07C2F8EF2BA4E90A0052FD4E /* CountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewController.swift; sourceTree = "<group>"; };
 		07C2F8F22BA4E90A0052FD4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07C2F8F42BA4E90C0052FD4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07C2F8F72BA4E90C0052FD4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07C2F8F92BA4E90C0052FD4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07C2F8FF2BA4EAD40052FD4E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		07C2F9012BA4F0340052FD4E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		07C2F9082BA903C70052FD4E /* CountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewModel.swift; sourceTree = "<group>"; };
+		07C2F90A2BA92F740052FD4E /* CustomCountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCountryCell.swift; sourceTree = "<group>"; };
+		07C2F90B2BA92F740052FD4E /* CustomCountryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCountryCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +72,16 @@
 			children = (
 				07C2F8EB2BA4E90A0052FD4E /* AppDelegate.swift */,
 				07C2F8ED2BA4E90A0052FD4E /* SceneDelegate.swift */,
-				07C2F8EF2BA4E90A0052FD4E /* ViewController.swift */,
+				07C2F8EF2BA4E90A0052FD4E /* CountryViewController.swift */,
 				07C2F8F12BA4E90A0052FD4E /* Main.storyboard */,
 				07C2F8F42BA4E90C0052FD4E /* Assets.xcassets */,
 				07C2F8F62BA4E90C0052FD4E /* LaunchScreen.storyboard */,
 				07C2F8F92BA4E90C0052FD4E /* Info.plist */,
 				07C2F8FF2BA4EAD40052FD4E /* Model.swift */,
 				07C2F9012BA4F0340052FD4E /* NetworkService.swift */,
+				07C2F9082BA903C70052FD4E /* CountryViewModel.swift */,
+				07C2F90A2BA92F740052FD4E /* CustomCountryCell.swift */,
+				07C2F90B2BA92F740052FD4E /* CustomCountryCell.xib */,
 			);
 			path = Countries;
 			sourceTree = "<group>";
@@ -143,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07C2F8F82BA4E90C0052FD4E /* LaunchScreen.storyboard in Resources */,
+				07C2F90D2BA92F740052FD4E /* CustomCountryCell.xib in Resources */,
 				07C2F8F52BA4E90C0052FD4E /* Assets.xcassets in Resources */,
 				07C2F8F32BA4E90A0052FD4E /* Main.storyboard in Resources */,
 			);
@@ -156,9 +166,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				07C2F9022BA4F0340052FD4E /* NetworkService.swift in Sources */,
-				07C2F8F02BA4E90A0052FD4E /* ViewController.swift in Sources */,
+				07C2F8F02BA4E90A0052FD4E /* CountryViewController.swift in Sources */,
 				07C2F8EC2BA4E90A0052FD4E /* AppDelegate.swift in Sources */,
+				07C2F9092BA903C70052FD4E /* CountryViewModel.swift in Sources */,
 				07C2F8EE2BA4E90A0052FD4E /* SceneDelegate.swift in Sources */,
+				07C2F90C2BA92F740052FD4E /* CustomCountryCell.swift in Sources */,
 				07C2F9002BA4EAD40052FD4E /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
