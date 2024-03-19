@@ -9,10 +9,11 @@ import Foundation
 
 struct Country:Codable{
     let name: Name
-    let currencies: [String: Currency]
-    let capital: [String]
+    let currencies: [String: Currency]?
+    
+    let capital: [String]?
     let region: String
-    let languages: [String:String]
+    let languages: [String:String]?
     let population: Int
     let timezones: [String]
     let flags: Flags
@@ -24,10 +25,12 @@ struct Name:Codable{
 }
 
 struct Currency:Codable{
-    let name: String
-    let symbol: String
+    let name: String?
+    let symbol: String?
 }
 
 struct Flags:Codable{
     let png: String
 }
+
+
