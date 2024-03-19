@@ -76,21 +76,85 @@
 		07C2F8EA2BA4E90A0052FD4E /* Countries */ = {
 			isa = PBXGroup;
 			children = (
+				07C2F8F92BA4E90C0052FD4E /* Info.plist */,
+				07C2F9152BA964BD0052FD4E /* App */,
+			);
+			path = Countries;
+			sourceTree = "<group>";
+		};
+		07C2F9152BA964BD0052FD4E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				07C2F9172BA964F90052FD4E /* Core */,
+				07C2F9162BA964E10052FD4E /* Model */,
+				07C2F91B2BA9662B0052FD4E /* View */,
+				07C2F91C2BA966390052FD4E /* ViewModel */,
+				07C2F91A2BA9653E0052FD4E /* Resources */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		07C2F9162BA964E10052FD4E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				07C2F8FF2BA4EAD40052FD4E /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		07C2F9172BA964F90052FD4E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				07C2F9182BA965060052FD4E /* Service */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		07C2F9182BA965060052FD4E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				07C2F9192BA965130052FD4E /* Network */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		07C2F9192BA965130052FD4E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				07C2F9012BA4F0340052FD4E /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		07C2F91A2BA9653E0052FD4E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				07C2F8EB2BA4E90A0052FD4E /* AppDelegate.swift */,
 				07C2F8ED2BA4E90A0052FD4E /* SceneDelegate.swift */,
-				07C2F8EF2BA4E90A0052FD4E /* CountryViewController.swift */,
-				07C2F8F12BA4E90A0052FD4E /* Main.storyboard */,
 				07C2F8F42BA4E90C0052FD4E /* Assets.xcassets */,
 				07C2F8F62BA4E90C0052FD4E /* LaunchScreen.storyboard */,
-				07C2F8F92BA4E90C0052FD4E /* Info.plist */,
-				07C2F8FF2BA4EAD40052FD4E /* Model.swift */,
-				07C2F9012BA4F0340052FD4E /* NetworkService.swift */,
-				07C2F9082BA903C70052FD4E /* CountryViewModel.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		07C2F91B2BA9662B0052FD4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				07C2F8F12BA4E90A0052FD4E /* Main.storyboard */,
+				07C2F8EF2BA4E90A0052FD4E /* CountryViewController.swift */,
 				07C2F90A2BA92F740052FD4E /* CustomCountryCell.swift */,
 				07C2F90B2BA92F740052FD4E /* CustomCountryCell.xib */,
 				07C2F90E2BA93B3C0052FD4E /* CountryDetailsViewController.swift */,
 			);
-			path = Countries;
+			path = View;
+			sourceTree = "<group>";
+		};
+		07C2F91C2BA966390052FD4E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				07C2F9082BA903C70052FD4E /* CountryViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
