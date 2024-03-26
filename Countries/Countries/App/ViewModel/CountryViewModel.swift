@@ -28,33 +28,39 @@ class CountryViewModel {
         }
     }
     
-
+    
     
     func searchByLanguageOrName(searchText: String, completion: @escaping (Result<[Country], Error>) -> Void) {
-            if let language = Locale.current.localizedString(forIdentifier: searchText) { // Search by language
-                let endpoint = Endpoint.languageSearch(language)
-                networkService.request(endpoint) { [weak self] (result: Result<[Country], Error>) in
-                    switch result {
+        // Search by name
+        let nameEndpoint = Endpoint.nameSearch(searchText)
+        
+        networkService.request(nameEndpoint) { [weak self] (nameResult: Result<[Country], Error>) in
+            switch nameResult {
+            case .success(let countries):
+                self?.filteredCountriesArr = countries
+                completion(.success(countries))
+                print("\n====> Success: Found by name - \n")
+                
+            case .failure(let nameError):
+                // If not found by name, search by language
+                let languageEndpoint = Endpoint.languageSearch(searchText)
+                
+                self?.networkService.request(languageEndpoint) { [weak self] (languageResult: Result<[Country], Error>) in
+                    
+                    switch languageResult {
                     case .success(let countries):
                         self?.filteredCountriesArr = countries
                         completion(.success(countries))
-                    case .failure(let error):
-                        completion(.failure(error))
-                    }
-                }
-            } else { // Search by name
-                let endpoint = Endpoint.nameSearch(searchText)
-                networkService.request(endpoint) { [weak self] (result: Result<[Country], Error>) in
-                    switch result {
-                    case .success(let countries):
-                        self?.filteredCountriesArr = countries
-                        completion(.success(countries))
-                    case .failure(let error):
-                        completion(.failure(error))
+                        print("\n====> Success: Found by language - \n")
+                        
+                    case .failure(let languageError):
+                        completion(.failure(languageError))
                     }
                 }
             }
         }
-    
-
+    }
 }
+
+
+

@@ -33,7 +33,6 @@ class CountryViewController: UIViewController {
         countryViewModel.fetchCountries { result in
             switch result{
             case.success(let countries):
-                print(countries.count)
                 DispatchQueue.main.async {
                     self.countriesTblView.reloadData()
                 }
@@ -48,40 +47,40 @@ class CountryViewController: UIViewController {
 }
 
 extension CountryViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-           guard let searchText = textField.text else { return }
-
-           if !searchText.isEmpty {
-               countryViewModel.searchByLanguageOrName(searchText: searchText) { [weak self] result in
-                   guard let self = self else { return }
-
-                   switch result {
-                   case .success(let countries):
-                       self.countryViewModel.filteredCountriesArr = countries
-                       DispatchQueue.main.async {
-                           self.countriesTblView.reloadData()
-                       }
-                   case .failure(let error):
-                       print("Search failed: \(error)")
-                   }
-               }
-           } else {
-               countryViewModel.filteredCountriesArr = countryViewModel.allCountriesArr
-               countriesTblView.reloadData()
-           }
-       }
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let searchText = textField.text else { return }
+        
+        if !searchText.isEmpty {
+            countryViewModel.searchByLanguageOrName(searchText: searchText) { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let countries):
+                    self.countryViewModel.filteredCountriesArr = countries
+                    DispatchQueue.main.async {
+                        self.countriesTblView.reloadData()
+                    }
+                case .failure(let error): break
+                    //                       print("Search failed: \(error)")
+                }
+            }
+        } else {
+            countryViewModel.filteredCountriesArr = countryViewModel.allCountriesArr
+            countriesTblView.reloadData()
+        }
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder() // Dismiss the keyboard
-            return true
-        }
+        textField.resignFirstResponder() // Dismiss the keyboard
+        return true
+    }
 }
 
 extension CountryViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if let countries = countryViewModel.filteredCountriesArr{
-            print(countries.count)
+            print("countries count -> \(countries.count)")
             return countries.count
         }
         print("no count")
@@ -90,7 +89,7 @@ extension CountryViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = countriesTblView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath) as! CustomCountryCell
-                
+        
         if let country = countryViewModel.filteredCountriesArr?[indexPath.row]{
             cell.countryFlagLbl.text = country.flag
             cell.countryNameLbl.text = country.name.common
@@ -102,9 +101,7 @@ extension CountryViewController:UITableViewDelegate,UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
-        
-        
+        print("selected country indexpath -> \(indexPath)")
         
         if let selectedCountryCell = countryViewModel.filteredCountriesArr?[indexPath.row] {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

@@ -25,7 +25,7 @@ class CountryDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(selectedCountry?.flag)
+        print("selectedCountry flag \(selectedCountry?.flag)")
         
         
         // Do any additional setup after loading the view.
@@ -47,9 +47,7 @@ class CountryDetailsViewController: UIViewController {
             let imageURL = URL(string:country.flags.png)
             countryFlagImg.sd_setImage(with: imageURL)
             
-            
-            print(country.currencies?.keys.joined(separator: ", "))
-            
+                        
             
         }
         
